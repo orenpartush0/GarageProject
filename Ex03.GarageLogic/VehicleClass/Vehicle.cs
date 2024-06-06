@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Ex03.GarageLogic.WheelsClass;
 
@@ -7,14 +6,14 @@ namespace Ex03.GarageLogic.Classes
 {
     public abstract class Vehicle
     {
-        private readonly string r_LicenseNumber;
+        public string LicenseNumber { set; get; }
         public string ModelName { get; }
         public float EnergySourceRemainingPercentage { set; get; }
         public List<Wheel> Wheels { set; get; }
 
         internal Vehicle(string i_LicenseNumber)
         {
-            r_LicenseNumber = i_LicenseNumber;
+            LicenseNumber = i_LicenseNumber;
         }
 
         public override bool Equals(object i_Obj)
@@ -24,7 +23,7 @@ namespace Ex03.GarageLogic.Classes
             Vehicle toCompareTo = i_Obj as Vehicle;
             if (!(toCompareTo is  null))
             {
-                equals = toCompareTo.r_LicenseNumber == this.r_LicenseNumber;
+                equals = toCompareTo.LicenseNumber == this.LicenseNumber;
             }
 
             return equals;
@@ -42,7 +41,7 @@ namespace Ex03.GarageLogic.Classes
 
         public override int GetHashCode()
         {
-            return int.Parse(this.r_LicenseNumber);
+            return int.Parse(this.LicenseNumber);
         }
 
         public override string ToString()
@@ -55,7 +54,7 @@ namespace Ex03.GarageLogic.Classes
                 "Owner Phone Number: {4}\n" +
                 "Vehicle Status: {5}\n" +
                 "Wheels: {6}",
-                r_LicenseNumber,
+                LicenseNumber,
                 ModelName,
                 EnergySourceRemainingPercentage,
                 string.Join(", ", Wheels.Select(wheel => wheel.ToString()))

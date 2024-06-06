@@ -40,8 +40,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="EnginesClasses\Battery.cs" />
-    <Compile Include="EnginesClasses\FuelEngine.cs" />
+    <Compile Include="EnginesClasses\Engine.cs" />
+    <Compile Include="EnginesClasses\InheritosFromEngine\Battery.cs" />
+    <Compile Include="EnginesClasses\InheritosFromEngine\FuelEngine.cs" />
     <Compile Include="Enums\Colors.cs" />
     <Compile Include="Enums\LicenseType.cs" />
     <Compile Include="Enums\NumberOfDoors.cs" />
