@@ -8,19 +8,17 @@ namespace Ex03.GarageLogic.VehicleClasses
     {
         public Colors Color { set; get; }
         public NumberOfDoors NumberOfDoors { get; }
-        public Battery Battery { get; }
 
-        public ElectricCar(string i_LicenseNumber) : base(i_LicenseNumber) { }
+        public ElectricCar(string i_LicenseNumber) : base(i_LicenseNumber, new Battery()) { }
 
         public override string ToString()
         {
             return base.ToString() + string.Format(
                        "\nColor: {0}\n" +
-                       "Number of Doors: {1}\n" +
-                       "Battery: {2}",
+                       "Number of Doors: {1}\n",
                        Color,
-                       NumberOfDoors,
-                       Battery);
+                       NumberOfDoors
+                       );
         }
     }
 }

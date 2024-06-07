@@ -1,14 +1,15 @@
 ﻿using System;
 using Ex03.GarageLogic.Classes;
+using Ex03.GarageLogic.Engines;
 
 namespace Ex03.GarageLogic.VehicleClasses
 {
-    public class Truck :Vehicle
+    public class Truck : Vehicle
     {
         public float CargoVolume { set; get; }
         public bool IsCarryingHazardousMaterials { set; get; }
 
-        public Truck(string i_LicenseNumber) : base(i_LicenseNumber) { }
+        public Truck(string i_LicenseNumber) : base(i_LicenseNumber, new FuelEngine()) { }
 
         public override string ToString()
         {

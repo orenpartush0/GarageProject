@@ -15,6 +15,11 @@ namespace Ex03.GarageLogic.WheelsClass
             CurrentAirPressure = newPressure <= MaxAirPressure ? newPressure : CurrentAirPressure;
         }
 
+        public void InflateToMax()
+        {
+            CurrentAirPressure = MaxAirPressure;
+        }
+
         public override string ToString()
         {
             return string.Format(

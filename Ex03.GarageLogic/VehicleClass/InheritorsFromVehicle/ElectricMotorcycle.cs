@@ -8,19 +8,17 @@ namespace Ex03.GarageLogic.VehicleClasses
     {
         public LicenseType LicenseType { set; get; }
         public int EngineDisplacementInCC { set; get; }
-        public Battery Battery { set; get; }
 
-        public ElectricMotorcycle(string i_LicenseNumber) : base(i_LicenseNumber) { }
+        public ElectricMotorcycle(string i_LicenseNumber) : base(i_LicenseNumber, new Battery()) { }
 
         public override string ToString()
         {
             return base.ToString() + string.Format(
                        "\nLicense Type: {0}\n" +
-                       "Engine Displacement: {1} cc\n" +
-                       "Battery: {2}",
+                       "Engine Displacement: {1} cc\n",
                        LicenseType,
-                       EngineDisplacementInCC,
-                       Battery);
+                       EngineDisplacementInCC
+                       );
         }
     }
 }

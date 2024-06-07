@@ -1,7 +1,7 @@
 ﻿
 public enum VehicleStatus
 {
-    Repair,
+    Repair = 1,
     Fixed,
     Paid
 }
