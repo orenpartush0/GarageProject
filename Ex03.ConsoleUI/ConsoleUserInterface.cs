@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ex03.GarageLogic.Classes;
 using Ex03.GarageLogic.GarageClass;
 
 namespace Ex03.ConsoleUI
@@ -10,6 +11,7 @@ namespace Ex03.ConsoleUI
         private const int k_TimeLetUseToSeePrintsBeforeClear = 1000;
         private readonly GarageManager r_GarageManager = new GarageManager();
         private bool m_OnGoing = true;
+        private readonly MenuCollection r_MenuCollection;
 
         public void Main()
         {
@@ -20,8 +22,8 @@ namespace Ex03.ConsoleUI
         {
             while (m_OnGoing)
             {
-                MenuCollection.PrintMainMenu();
-                MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int userInput, MenuCollection.k_MainMenuMaxOption);
+                r_MenuCollection.PrintMenu<GarageMenuOptions>();
+                r_MenuCollection.CheckUserInput(Console.ReadLine(), out int userInput, MenuCollection.k_MainMenuMaxOption);
                 Console.Clear();
                 executeByUserChoice(userInput.ToString());
                 Console.Clear();
@@ -59,14 +61,13 @@ namespace Ex03.ConsoleUI
                     break;
                 default:
                     throw new ArgumentException("Invalid choice. Please select a number from 1 to 8.");
-                    break;
             }
         }
 
         private void printCarDetails()
         {
             Console.WriteLine("What is the license number of the vehicle you want to get information about?");
-            MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
+            r_MenuCollection.CheckUserInput(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
             Console.Clear();
             Console.WriteLine(r_GarageManager.GetDataOnVehicleByLicenseNumber(licenseNumber.ToString()));
         }
@@ -74,10 +75,10 @@ namespace Ex03.ConsoleUI
         private void refuelVehicle()
         {
             Console.WriteLine("What is the license number of the vehicle you want to refuel?");
-            MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
+            r_MenuCollection.CheckUserInput(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
             Console.Clear();
-            MenuCollection.PrintGasMenu();
-            MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int fuelChoice, MenuCollection.k_GasMenuMaxOption);
+            r_MenuCollection.PrintMenu<FuelType>();
+            r_MenuCollection.CheckUserInput(Console.ReadLine(), out int fuelChoice, MenuCollection.k_GasMenuMaxOption);
             Console.Clear();
             Console.WriteLine("How much fuel to refuel?");
             checkFloatParsing(Console.ReadLine(), out float fuelToRefuel);
@@ -88,7 +89,7 @@ namespace Ex03.ConsoleUI
         private void rechargeVehicle()
         {
             Console.WriteLine("What is the license number of the vehicle you want to refuel?");
-            MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
+            r_MenuCollection.CheckUserInput(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
             Console.Clear();
             Console.WriteLine("How many minutes would you like to charge the car?");
             checkFloatParsing(Console.ReadLine(), out float minToCharge);
@@ -106,25 +107,25 @@ namespace Ex03.ConsoleUI
         private void inflateTires()
         {
             Console.WriteLine("What is the license number of the vehicle you want to fill the tires with air?");
-            MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
+            r_MenuCollection.CheckUserInput(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
             r_GarageManager.FillTires(licenseNumber.ToString());
         }
 
         private void changeVehicleStatus()
         {
             Console.WriteLine("Please enter a license number");
-            string licenseNumberInput = Console.ReadLine();
+            r_MenuCollection.CheckUserInput(Console.ReadLine(), out int licenseNumber, k_LicenseMaxSize);
 
             VehicleStatus newStatus = getNewStatus();
-            Tuple<VehicleStatus, VehicleStatus> BeforeAndAfterStatus = r_GarageManager.ChangeVehicleStatus(licenseNumberInput, newStatus);
+            Tuple<VehicleStatus, VehicleStatus> BeforeAndAfterStatus = r_GarageManager.ChangeVehicleStatus(licenseNumber.ToString(), newStatus);
             Console.WriteLine(string.Format("{0}------>{1}", BeforeAndAfterStatus.Item1, BeforeAndAfterStatus.Item2));
             System.Threading.Thread.Sleep(1500);
         }
 
         private VehicleStatus getNewStatus()
         {
-            MenuCollection.PrintStatusMenu();
-            MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int choice, MenuCollection.k_StatusMenuMaxOption);
+            r_MenuCollection.PrintMenu<VehicleStatus>();
+            r_MenuCollection.CheckUserInput(Console.ReadLine(), out int choice, MenuCollection.k_StatusMenuMaxOption);
 
             return (VehicleStatus)choice;
         }
@@ -133,13 +134,13 @@ namespace Ex03.ConsoleUI
         {
             List<string> licenseNumber;
 
-            MenuCollection.PrintFilterMenu();
-            MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int userInput, MenuCollection.k_FilterMenuMaxOption);
+            r_MenuCollection.PrintMenu<VehicleStatus>();
+            r_MenuCollection.CheckUserInput(Console.ReadLine(), out int userInput, MenuCollection.k_FilterMenuMaxOption);
             Console.Clear();
             switch (userInput.ToString())
             {
                 case "1":
-                    printList(r_GarageManager.GetAllVehicleLicenseNumberInGarage());
+                    printList(r_GarageManager.GetVehicleLicenseNumberListWithFiltering());
                     break;
                 case "2":
                     printList(r_GarageManager.GetVehicleLicenseNumberListWithFiltering(VehicleStatus.Repair));
@@ -149,8 +150,6 @@ namespace Ex03.ConsoleUI
                     break;
                 case "4":
                     printList(r_GarageManager.GetVehicleLicenseNumberListWithFiltering(VehicleStatus.Paid));
-                    break;
-                case "5":
                     break;
                 default:
                     break;
@@ -165,6 +164,12 @@ namespace Ex03.ConsoleUI
             {
                 Console.WriteLine(valueToPrint);
             }
+        }
+
+        private void addVehicle()
+        {
+            r_MenuCollection.PrintMenu<Vehicles>();
+
         }
     }
 }

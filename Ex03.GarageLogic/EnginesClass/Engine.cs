@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic.EnginesClasses
 
             if (newCapacity > MaxEnergyLevel)
             {
-                throw new ArgumentException("Too much " + this.GetType() == "Battery" ? "charge" : "fuel");
+                throw new ArgumentException("Too much " + this.GetType() == EngineEnum.Battery.ToString() ? "charge" : "fuel");
             }
 
             CurrentEnergyLevel = newCapacity;

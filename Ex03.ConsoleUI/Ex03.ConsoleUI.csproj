@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleUserInterface.cs" />
+    <Compile Include="Enum\GarageMenuOption.cs" />
     <Compile Include="MenuCollection.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

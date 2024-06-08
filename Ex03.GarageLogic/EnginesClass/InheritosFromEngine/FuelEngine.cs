@@ -6,13 +6,13 @@ namespace Ex03.GarageLogic.Engines
 {
     public sealed class FuelEngine : Engine
     {
-        private const string k_Type = "FuelEngine";
+        private const EngineEnum k_Type = EngineEnum.FuelEngine;
 
         public FuelType FuelType { set; get; }
 
         public override string GetType()
         {
-            return k_Type;
+            return k_Type.ToString();
         }
 
         public override string PowerSource()

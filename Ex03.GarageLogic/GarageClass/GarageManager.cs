@@ -20,31 +20,12 @@ namespace Ex03.GarageLogic.GarageClass
             return VehiclesInGarage.ContainsKey(i_LicenseNumber);
         }
 
-        public List<string> GetAllVehicleLicenseNumberInGarage()
+        public List<string> GetVehicleLicenseNumberListWithFiltering(VehicleStatus? i_Filter = null)
         {
-            List<string> AllLicenseNumbers = new List<string>();
-
-            foreach (KeyValuePair<string, VehicleInformation> vehicle in VehiclesInGarage)
-            {
-                AllLicenseNumbers.Add(vehicle.Key);
-            }
-
-            return AllLicenseNumbers;
-        }
-
-        public List<string> GetVehicleLicenseNumberListWithFiltering(VehicleStatus i_Filter)
-        {
-            List<string> AllLicenseNumbers = new List<string>();
-
-            foreach (KeyValuePair<string, VehicleInformation> vehicle in VehiclesInGarage)
-            {
-                if (vehicle.Value.VehicleStatus == i_Filter)
-                {
-                    AllLicenseNumbers.Add(vehicle.Key);
-                }
-            }
-
-            return AllLicenseNumbers;
+            return VehiclesInGarage
+                .Where(vehicle => i_Filter == null || vehicle.Value.VehicleStatus == i_Filter)
+                .Select(vehicle => vehicle.Key)
+                .ToList();
         }
 
         public Tuple<VehicleStatus, VehicleStatus> ChangeVehicleStatus(string i_LicenseNumber, VehicleStatus i_NewStatus)
