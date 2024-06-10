@@ -30,6 +30,7 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine($"{index}. {formattedName}.");
                 index++;
             }
+
             Console.WriteLine($"Enter your choice (1-{names.Length}):");
         }
 

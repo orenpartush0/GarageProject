@@ -19,7 +19,7 @@ namespace Ex03.ConsoleUI
 
         private void checkLicense(string i_LicenseNumber)
         {
-            if(i_LicenseNumber.Length != k_LicenseMaxSize || !i_LicenseNumber.All(char.IsDigit))
+            if (i_LicenseNumber.Length != k_LicenseMaxSize || !i_LicenseNumber.All(char.IsDigit))
             {
                 throw new ArgumentException("invalid license number");
             }
@@ -37,7 +37,7 @@ namespace Ex03.ConsoleUI
                     executeByUserChoice(userInput.ToString());
                     Console.Clear();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                     System.Threading.Thread.Sleep(1000);
@@ -221,7 +221,7 @@ namespace Ex03.ConsoleUI
                 MenuCollection.CheckUserInputByMenu(Console.ReadLine(), out int vehicleChoice, MenuCollection.k_VehicleNum);
                 Console.Clear();
                 Factory factory = Factory.createFactory((eVehicle)vehicleChoice);
-                factory.SetVehicleData((eVehicle)vehicleChoice,licenseNumber,r_GarageManager);
+                factory.SetVehicleData((eVehicle)vehicleChoice, licenseNumber, r_GarageManager);
             }
         }
     }

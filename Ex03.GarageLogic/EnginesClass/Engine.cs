@@ -24,6 +24,7 @@ namespace Ex03.GarageLogic.EnginesClasses
 
             CurrentEnergyLevelPercentage = (newCapacity / MaxEnergyLevel) * 100;
             Tuple<float, float> beforeAndAfterEnergize = Tuple.Create(newCapacity, MaxEnergyLevel);
+
             return beforeAndAfterEnergize;
         }
 

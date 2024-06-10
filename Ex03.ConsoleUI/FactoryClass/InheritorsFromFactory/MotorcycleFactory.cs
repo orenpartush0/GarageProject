@@ -37,7 +37,7 @@ namespace Ex03.GarageLogic.FactoryClass.InheritorsFromFactory
         private int getDisplacementInCc()
         {
             Console.WriteLine("Please enter your motorcycle displacement in CC");
-            if(int.TryParse(Console.ReadLine(), out int displacementInCc))
+            if(!int.TryParse(Console.ReadLine(), out int displacementInCc))
             {
                 throw new FormatException("invalid input");
             };
