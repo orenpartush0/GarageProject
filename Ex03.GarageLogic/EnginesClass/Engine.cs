@@ -22,8 +22,8 @@ namespace Ex03.GarageLogic.EnginesClasses
                 throw new ArgumentException("Too much " + (this.GetType() == eEngine.Battery.ToString() ? "charge" : "fuel"));
             }
 
-            CurrentEnergyLevelPercentage = newCapacity;
-            Tuple<float, float> beforeAndAfterEnergize = Tuple.Create(CurrentEnergyLevelPercentage, MaxEnergyLevel);
+            CurrentEnergyLevelPercentage = (newCapacity / MaxEnergyLevel) * 100;
+            Tuple<float, float> beforeAndAfterEnergize = Tuple.Create(newCapacity, MaxEnergyLevel);
             return beforeAndAfterEnergize;
         }
 

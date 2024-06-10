@@ -44,7 +44,7 @@ namespace Ex03.GarageLogic.FactoryClass.InheritorsFromFactory
             Console.WriteLine("Does the truck contain hazardous cargo?(y/n)");
             string answer = Console.ReadLine();
             Console.Clear();
-            if (answer.Length != 1 || answer[0] != 'y' || answer[0] != 'n')
+            if (answer.Length != 1 || (answer[0] != 'y' && answer[0] != 'n'))
             {
                 throw new ArgumentException("invalid input");
             }
