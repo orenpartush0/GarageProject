@@ -5,19 +5,26 @@ namespace Ex03.GarageLogic.EnginesClasses
 {
     public abstract class Engine
     {
-        public float CurrentEnergyLevel { set; get; }
+        public float CurrentEnergyLevelPercentage { set; get; }
         public float MaxEnergyLevel { set; get; }
 
-        public void Energize(float i_EnergySource)
+        protected Engine(float i_MaxEnergyLevel)
         {
-            float newCapacity = i_EnergySource + CurrentEnergyLevel;
+            MaxEnergyLevel = i_MaxEnergyLevel;
+        }
+
+        public Tuple<float, float> Energize(float i_EnergySource)
+        {
+            float newCapacity = i_EnergySource + ((CurrentEnergyLevelPercentage * MaxEnergyLevel) / 100);
 
             if (newCapacity > MaxEnergyLevel)
             {
-                throw new ArgumentException("Too much " + this.GetType() == EngineEnum.Battery.ToString() ? "charge" : "fuel");
+                throw new ArgumentException("Too much " + (this.GetType() == eEngine.Battery.ToString() ? "charge" : "fuel"));
             }
 
-            CurrentEnergyLevel = newCapacity;
+            CurrentEnergyLevelPercentage = newCapacity;
+            Tuple<float, float> beforeAndAfterEnergize = Tuple.Create(CurrentEnergyLevelPercentage, MaxEnergyLevel);
+            return beforeAndAfterEnergize;
         }
 
         public new abstract string GetType();
@@ -27,7 +34,7 @@ namespace Ex03.GarageLogic.EnginesClasses
             return string.Format(
                 "Current Energy Level: {0}\n" +
                 "Max Energy Level: {1}",
-                CurrentEnergyLevel,
+                CurrentEnergyLevelPercentage,
                 MaxEnergyLevel
             );
         }

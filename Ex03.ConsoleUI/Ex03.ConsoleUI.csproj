@@ -42,9 +42,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleUserInterface.cs" />
-    <Compile Include="Enum\GarageMenuOption.cs" />
-    <Compile Include="MenuCollection.cs" />
+    <Compile Include="Ui\ConsoleUserInterface.cs" />
+    <Compile Include="Enum\eGarageMenuOption.cs" />
+    <Compile Include="Enum\eSec.cs" />
+    <Compile Include="FactoryClass\Factory.cs" />
+    <Compile Include="FactoryClass\InheritorsFromFactory\CarFactory.cs" />
+    <Compile Include="FactoryClass\InheritorsFromFactory\ElectricCarFactory.cs" />
+    <Compile Include="FactoryClass\InheritorsFromFactory\ElectricMotorcycleFactory.cs" />
+    <Compile Include="FactoryClass\InheritorsFromFactory\MotorcycleFactory.cs" />
+    <Compile Include="FactoryClass\InheritorsFromFactory\TruckFactory.cs" />
+    <Compile Include="Ui\MenuCollection.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Ui\VisualLogos.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

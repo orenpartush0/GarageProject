@@ -6,9 +6,15 @@ namespace Ex03.GarageLogic.Engines
 {
     public sealed class FuelEngine : Engine
     {
-        private const EngineEnum k_Type = EngineEnum.FuelEngine;
+        public FuelEngine(eFuelType i_FuelType, float i_MaxEnergyLevel)
+            : base(i_MaxEnergyLevel)
+        {
+            FuelType = i_FuelType;
+        }
 
-        public FuelType FuelType { set; get; }
+        private const eEngine k_Type = eEngine.FuelEngine;
+
+        public eFuelType FuelType { set; get; }
 
         public override string GetType()
         {
@@ -23,8 +29,8 @@ namespace Ex03.GarageLogic.Engines
         public override string ToString()
         {
             return string.Format(
-                "{1}\n" +
-                "Fuel type: {2}\n",
+                "{0}\n" +
+                "Fuel type: {1}\n",
                 base.ToString(),
                 FuelType.ToString()
                 );

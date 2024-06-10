@@ -8,15 +8,18 @@ namespace Ex03.GarageLogic.Classes
     public abstract class Vehicle
     {
         public string LicenseNumber { set; get; }
-        public string ModelName { get; }
-        public float EnergySourceRemainingPercentage { set; get; }
+        public string ModelName { set; get; }
         public List<Wheel> Wheels { set; get; }
-        public Engine Engine { get; }
+        public Engine Engine { set; get; }
 
-
-        internal Vehicle(string i_LicenseNumber, Engine i_Engine)
+        public Vehicle(string i_LicenseNumber, Engine i_Engine)
         {
             LicenseNumber = i_LicenseNumber;
+            Engine = i_Engine;
+        }
+
+        internal Vehicle(Engine i_Engine)
+        {
             Engine = i_Engine;
         }
 
@@ -53,12 +56,10 @@ namespace Ex03.GarageLogic.Classes
             return string.Format(
                 "License Number: {0}\n" +
                 "Model Name: {1}\n" +
-                "Energy Source Remaining Percentage: {2}%\n" +
-                "Engine: {3}\n" +
-                "Wheels:\n{4}",
+                "Engine: {2}\n" +
+                "Wheels:\n{3}",
                 LicenseNumber,
                 ModelName,
-                EnergySourceRemainingPercentage,
                 Engine.ToString(),
                 string.Join("\n", Wheels.Select(wheel => wheel.ToString()))
             );

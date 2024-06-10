@@ -1,6 +1,6 @@
 ﻿
 
-public enum GarageMenuOptions
+public enum eGarageMenuOptions
 {
     Add_New_Car_To_Garage,
     Display_List_Of_Cars_With_Filter,

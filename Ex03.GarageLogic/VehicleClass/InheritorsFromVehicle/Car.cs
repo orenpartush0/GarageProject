@@ -1,15 +1,16 @@
 ﻿using System;
 using Ex03.GarageLogic.Classes;
 using Ex03.GarageLogic.Engines;
+using Ex03.GarageLogic.EnginesClasses;
 
 namespace Ex03.GarageLogic.VehicleClasses
 {
     public class Car : Vehicle
     {
-        public Colors Color { set; get; }
-        public NumberOfDoors NumberOfDoors { get; }
+        public eColors Color { set; get; }
+        public eNumberOfDoors NumberOfDoors { set; get; }
 
-        public Car(string i_LicenseNumber) : base(i_LicenseNumber, new FuelEngine()) { }
+        public Car(Engine i_Engine, string i_LicenseNumber) : base(i_LicenseNumber, i_Engine) { }
 
         public override string ToString()
         {

@@ -1,5 +1,4 @@
-﻿
-public enum VehicleStatus
+﻿public enum eFilter
 {
     All = 1,
     Repair,

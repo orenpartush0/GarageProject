@@ -1,12 +1,10 @@
 ﻿
-
-
 using Ex03.GarageLogic.Classes;
 using Ex03.GarageLogic.VehicleClasses;
 
 namespace Ex03.GarageLogic.FactoryClass.InheritorsFromFactory
 {
-    internal class MotorcycleFactory : Factory
+    public class MotorcycleFactory : Factory
     {
         public override Vehicle CreateVehicle()
         {

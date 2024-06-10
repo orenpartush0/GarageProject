@@ -1,6 +1,6 @@
-﻿public enum NumberOfDoors
+﻿public enum eNumberOfDoors
 {
-    TwoDoors,
+    TwoDoors = 1,
     ThreeDoors,
     FourDoors,
     FiveDoors

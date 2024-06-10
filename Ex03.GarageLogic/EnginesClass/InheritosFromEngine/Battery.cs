@@ -5,8 +5,11 @@ namespace Ex03.GarageLogic.Engines
 {
     public sealed class Battery : Engine
     {
-        private const EngineEnum k_Type = EngineEnum.Battery;
+        private const eEngine k_Type = eEngine.Battery;
         private const string k_PowerSource = "Electricity";
+
+        public Battery(float i_MaxEnergyLevel)
+            : base(i_MaxEnergyLevel) { }
 
         public override string GetType()
         {

@@ -4,12 +4,20 @@ using Ex03.GarageLogic.EnginesClasses;
 
 namespace Ex03.GarageLogic.GarageClass
 {
-    public class VehicleInformation
+    public class CostumerInfo
     {
-        public string OwnerName { get; }
+        public string OwnerName { set; get; }
         public string OwnerPhoneNumber { set; get; }
-        public VehicleStatus VehicleStatus { set; get; }
+        public eVehicleStatus VehicleStatus { set; get; }
         public Vehicle Vehicle { set; get; }
+
+        public CostumerInfo(string i_OwnerName, string i_OwnerPhone, Vehicle i_Vehicle)
+        {
+            OwnerName = i_OwnerName;
+            OwnerPhoneNumber = i_OwnerPhone;
+            Vehicle = i_Vehicle;
+            VehicleStatus = eVehicleStatus.Repair;
+        }
 
         public override string ToString()
         {

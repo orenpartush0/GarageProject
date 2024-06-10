@@ -10,9 +10,14 @@ namespace Ex03.ConsoleUI
         public const int k_FilterMenuMaxOption = 4;
         public const int k_MainMenuMaxOption = 8;
         public const int k_StatusMenuMaxOption = 3;
+        public const int k_VehicleNum = 5;
+        public const int k_ColorsMenuMaxOption = 4;
+        public const int k_DoorsMenuMaxOption = 4;
+        public const int k_LicenseTypeMenuMaxOption = 4;
 
 
-        public void PrintMenu<T>() where T : Enum
+
+        public static void PrintMenu<T>() where T : Enum
         {
             var enumType = typeof(T);
             var names = Enum.GetNames(enumType);
@@ -28,7 +33,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine($"Enter your choice (1-{names.Length}):");
         }
 
-        public void CheckUserInput(string i_NeedToParsed, out int o_Parsed, int i_MaxOption)
+        public static void CheckUserInputByMenu(string i_NeedToParsed, out int o_Parsed, int i_MaxOption)
         {
             if (!int.TryParse(i_NeedToParsed, out o_Parsed))
             {

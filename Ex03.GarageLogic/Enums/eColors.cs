@@ -1,7 +1,7 @@
 ﻿
-public enum Colors
+public enum eColors
 {
-    Yellow,
+    Yellow = 1,
     White,
     Black,
     Red
