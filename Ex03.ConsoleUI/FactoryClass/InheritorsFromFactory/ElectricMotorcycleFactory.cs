@@ -13,7 +13,7 @@ namespace Ex03.ConsoleUI.FactoryClass.InheritorsFromFactory
     {
         private const float k_MaxBatteryTimeConsumption = 2.5f;
 
-        internal override Engine setEngine()
+        protected override Engine setEngine()
         {
             return new Battery(k_MaxBatteryTimeConsumption);
         }

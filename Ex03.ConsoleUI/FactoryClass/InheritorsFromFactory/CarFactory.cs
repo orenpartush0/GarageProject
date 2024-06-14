@@ -14,21 +14,17 @@ namespace Ex03.GarageLogic.FactoryClass.InheritorsFromFactory
     public class CarFactory : Factory
     {
         private const float k_FuelTankCapacityInLiters = 45;
-        private const float k_NumOfWheels = 5;
-        private const float k_MaxWheelsAirPressure = 31;
+        protected override float NumOfWheels = 5;
+        protected override float WheelMaxPressure = 31;
 
         private const eFuelType k_FuelType = eFuelType.Octan95;
-        internal override Engine setEngine()
+        
+        protected override Engine setEngine()
         {
             return new FuelEngine(k_FuelType, k_FuelTankCapacityInLiters);
         }
 
-        internal override void setWheels(ref Vehicle i_Vehicle)
-        {
-            setWheelsWithConfiguration(ref i_Vehicle, k_NumOfWheels, k_MaxWheelsAirPressure);
-        }
-
-        internal override void setVehicleSpecificConfiguration(ref Vehicle i_Vehicle)
+        protected override void setVehicleSpecificConfiguration(Vehicle i_Vehicle)
         {
             ((Car)i_Vehicle).Color = getCarColor();
             ((Car)i_Vehicle).NumberOfDoors = getCarNumOfDoors();
