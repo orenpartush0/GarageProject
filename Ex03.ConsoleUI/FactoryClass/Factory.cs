@@ -80,7 +80,7 @@ namespace Ex03.GarageLogic
             }
             else if(floatCurrentEnergy > 100)
             {
-                throw new ArgumentException("Max 100%");
+                throw new ValueOutOfRangeException(0,100);
             }
 
             return floatCurrentEnergy;
