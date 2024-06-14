@@ -40,7 +40,7 @@ namespace Ex03.ConsoleUI
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep((int)eSec.TwoSec);
                     Console.Clear();
                 }
             }
