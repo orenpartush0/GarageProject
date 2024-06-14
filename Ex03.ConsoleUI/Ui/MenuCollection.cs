@@ -1,4 +1,5 @@
 ﻿using System;
+using Ex03.GarageLogic;
 
 
 namespace Ex03.ConsoleUI
@@ -14,6 +15,7 @@ namespace Ex03.ConsoleUI
         public const int k_ColorsMenuMaxOption = 4;
         public const int k_DoorsMenuMaxOption = 4;
         public const int k_LicenseTypeMenuMaxOption = 4;
+        private const int k_MinMenuOption = 1;
 
 
 
@@ -40,10 +42,8 @@ namespace Ex03.ConsoleUI
             {
                 throw new FormatException("Invalid choice");
             }
-            else if (o_Parsed > i_MaxOption)
-            {
-                throw new ArgumentException("Invalid choice");
-            }
+
+            ValueOutOfRangeException.CheckValue(o_Parsed, k_MinMenuOption, i_MaxOption);
         }
     }
 }

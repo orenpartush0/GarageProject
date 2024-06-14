@@ -10,14 +10,8 @@ namespace Ex03.GarageLogic.WheelsClass
 
         public void Inflate(float i_ToInflate)
         {
-            float newPressure = i_ToInflate + CurrentAirPressure;
-
-            if(newPressure > MaxAirPressure)
-            {
-                throw new ArgumentException("Too much air pressure in the wheel");
-            }
-
-            CurrentAirPressure = newPressure;
+            ValueOutOfRangeException.CheckValue(i_ToInflate, 0, MaxAirPressure - CurrentAirPressure);
+            CurrentAirPressure = CurrentAirPressure + i_ToInflate;
         }
 
         public float InflateToMax()

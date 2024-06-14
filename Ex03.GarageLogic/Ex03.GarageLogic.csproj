@@ -53,6 +53,7 @@
     <Compile Include="Enums\eVehicleStatus.cs" />
     <Compile Include="GarageClass\GarageManager.cs" />
     <Compile Include="GarageClass\CostumerInfo.cs" />
+    <Compile Include="Exceptions\ValueOutOfRangeException.cs" />
     <Compile Include="VehicleClass\InheritorsFromVehicle\Car.cs" />
     <Compile Include="VehicleClass\InheritorsFromVehicle\Motorcycle.cs" />
     <Compile Include="VehicleClass\InheritorsFromVehicle\Truck.cs" />

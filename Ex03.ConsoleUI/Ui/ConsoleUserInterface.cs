@@ -58,16 +58,15 @@ namespace Ex03.ConsoleUI
                     break;
                 case "3":
                     changeVehicleStatus();
-                    System.Threading.Thread.Sleep(k_TimeLetUseToSeePrintsBeforeClear);
                     break;
                 case "4":
                     inflateTires();
                     break;
                 case "5":
-                    RefuelOrRecharge(true);
+                    refuelOrRecharge(true);
                     break;
                 case "6":
-                    RefuelOrRecharge(false);
+                    refuelOrRecharge(false);
                     break;
                 case "7":
                     printCarDetails();
@@ -94,17 +93,18 @@ namespace Ex03.ConsoleUI
         {
             Console.Write(i_Msg);
             System.Threading.Thread.Sleep((int)eSec.Sec);
-            Console.Write(".");
-            System.Threading.Thread.Sleep((int)eSec.Sec);
-            Console.Write(".");
-            System.Threading.Thread.Sleep((int)eSec.Sec);
-            Console.Clear();
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write(".");
+                System.Threading.Thread.Sleep((int)eSec.Sec);
+            }
+
             Console.WriteLine("Done!");
             System.Threading.Thread.Sleep((int)eSec.Sec);
             Console.Clear();
         }
 
-        private void RefuelOrRecharge(bool i_IsRefuel)
+        private void refuelOrRecharge(bool i_IsRefuel)
         {
             int fuelChoice = 1;
             Console.WriteLine("What is the license number of the vehicle you want to " + (i_IsRefuel ? "refuel?" : "recharge?"));

@@ -15,13 +15,8 @@ namespace Ex03.GarageLogic.EnginesClasses
 
         public Tuple<float, float> Energize(float i_EnergySource)
         {
+            ValueOutOfRangeException.CheckValue(i_EnergySource,0,MaxEnergyLevel - CurrentEnergyLevelPercentage);
             float newCapacity = i_EnergySource + ((CurrentEnergyLevelPercentage * MaxEnergyLevel) / 100);
-
-            if (newCapacity > MaxEnergyLevel)
-            {
-                throw new ArgumentException("Too much " + (this.GetType() == eEngine.Battery.ToString() ? "charge" : "fuel"));
-            }
-
             CurrentEnergyLevelPercentage = (newCapacity / MaxEnergyLevel) * 100;
             Tuple<float, float> beforeAndAfterEnergize = Tuple.Create(newCapacity, MaxEnergyLevel);
 
