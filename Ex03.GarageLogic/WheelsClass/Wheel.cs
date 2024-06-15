@@ -4,9 +4,9 @@ namespace Ex03.GarageLogic.WheelsClass
 {
     public sealed class Wheel
     {
-        private string ManufacturerName { set; }
+        private string ManufacturerName { get; }
         private float CurrentAirPressure { set; get; }
-        private float MaxAirPressure { set; }
+        private float MaxAirPressure { get; }
 
         public Wheel(string i_ManufacturerName, float i_CurrentAirPressure, float i_MaxAirPressure) { 
             ManufacturerName = i_ManufacturerName;

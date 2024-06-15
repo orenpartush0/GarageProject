@@ -58,13 +58,17 @@ namespace Ex03.GarageLogic.GarageClass
             return newAirPression;
         }
 
-        public Tuple<float, float> RefuelVehicle(string i_LicenseNumber, float i_FuelToFill, eFuelType? i_FuelType)
+        public void CheckIfVehicleIsServiced(string i_LicenseNumber)
         {
             if (!this.IsInGarage(i_LicenseNumber))
             {
                 throw new ArgumentException("This vehicle has not been serviced in the garage.");
             }
-            else if (VehiclesInGarage[i_LicenseNumber].Vehicle.Engine.GetType() == "Battery" && i_FuelType != null )
+        }
+
+        public Tuple<float, float> RefuelVehicle(string i_LicenseNumber, float i_FuelToFill, eFuelType? i_FuelType)
+        {
+            if (VehiclesInGarage[i_LicenseNumber].Vehicle.Engine.GetType() == "Battery" && i_FuelType != null )
             {
                 throw new ArgumentException("This vehicle is actually an electric vehicle.");
             }

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Ex03.GarageLogic.EnginesClasses;
+using Ex03.GarageLogic.EnginesClass;
 using Ex03.GarageLogic.WheelsClass;
 
 namespace Ex03.GarageLogic.Classes
 {
     public abstract class Vehicle
     {
-        private string LicenseNumber { set; get; }
+        private string LicenseNumber { get; }
         public string ModelName { set; get; }
         public List<Wheel> Wheels { set; get; }
         public Engine Engine { set; get; }

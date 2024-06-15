@@ -1,14 +1,10 @@
-﻿using System;
-using Ex03.GarageLogic.Classes;
-using Ex03.GarageLogic.EnginesClasses;
-using Garage;
+﻿using Ex03.GarageLogic.Classes;
 
 namespace Ex03.GarageLogic.GarageClass
 {
     public class CostumerInfo
     {
-        private string OwnerName { set; get; }
-        private string OwnerPhoneNumber { set; get; }
+        private Owner Owner { set; get; }
         public eVehicleStatus VehicleStatus { set; get; }
         public Vehicle Vehicle { set; get; }
 
@@ -25,7 +21,7 @@ namespace Ex03.GarageLogic.GarageClass
                 "{0}\n" +
                 "Vehicle Status: {1}%\n" +
                 "Vehicle: {2}\n",
-                Owner,
+                Owner.ToString(),
                 VehicleStatus.ToString(),
                 Vehicle.ToString()
             );

@@ -3,13 +3,14 @@ using Ex03.GarageLogic.Classes;
 using Ex03.GarageLogic.FactoryClass.InheritorsFromFactory;
 using System;
 using System.Collections.Generic;
-using Ex03.GarageLogic.EnginesClasses;
 using Ex03.GarageLogic.GarageClass;
 using Ex03.GarageLogic.VehicleCtreator;
 using Ex03.GarageLogic.WheelsClass;
 using System.Linq;
+using Ex03.GarageLogic;
+using Ex03.GarageLogic.EnginesClass;
 
-namespace Ex03.GarageLogic
+namespace Ex03.ConsoleUI.FactoryClass
 {
     public abstract class Factory
     {
@@ -44,7 +45,7 @@ namespace Ex03.GarageLogic
 
             return factory;
         }
-        
+
         private string getPhoneNumber()
         {
             Console.WriteLine("Please enter owner phone number (10 digits)");
@@ -72,7 +73,7 @@ namespace Ex03.GarageLogic
             return model;
         }
 
-        private float getCurrentEnergy(eVehicle i_VehicleType , Vehicle i_Vehicle)
+        private float getCurrentEnergy(eVehicle i_VehicleType, Vehicle i_Vehicle)
         {
             bool needTobeCharged =
                 i_VehicleType == eVehicle.ElectricCar || i_VehicleType == eVehicle.ElectricMotorcycle;
@@ -83,9 +84,9 @@ namespace Ex03.GarageLogic
             {
                 throw new FormatException("Invalid input");
             }
-            else if(floatCurrentEnergy > 100)
+            else if (floatCurrentEnergy > 100)
             {
-                throw new ValueOutOfRangeException(0,100);
+                throw new ValueOutOfRangeException(0, 100);
             }
 
             return floatCurrentEnergy;
@@ -114,16 +115,18 @@ namespace Ex03.GarageLogic
         }
 
         protected abstract void setVehicleSpecificConfiguration(Vehicle i_Vehicle);
-        
+
         private float[] getWheelsPressure(float i_WheelsNumber)
         {
             Console.WriteLine("Please enter the wheels pressure, separated by a comma or one pressure for all wheels: ");
+
             return wheelsPressureToArray((int)i_WheelsNumber);
         }
 
         private string[] getManufacturer(float i_WheelsNumber)
         {
             Console.WriteLine("Please enter the wheels manufacturer, separated by a comma or one manufacturer for all wheels: ");
+
             return wheelsDataToArray((int)i_WheelsNumber);
         }
 

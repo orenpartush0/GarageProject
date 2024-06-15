@@ -2,7 +2,7 @@
 using System.Text;
 
 
-namespace Ex03.ConsoleUI.Ui
+namespace Ex03.ConsoleUi.UI
 {
     internal class VisualLogos
     {

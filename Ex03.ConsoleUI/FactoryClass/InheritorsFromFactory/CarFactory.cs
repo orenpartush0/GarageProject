@@ -1,21 +1,19 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Ex03.ConsoleUI;
+using Ex03.ConsoleUi.UI;
 using Ex03.GarageLogic.Classes;
 using Ex03.GarageLogic.Engines;
-using Ex03.GarageLogic.EnginesClasses;
+using Ex03.GarageLogic.EnginesClass;
 using Ex03.GarageLogic.VehicleClasses;
-using Ex03.GarageLogic.WheelsClass;
 
-namespace Ex03.GarageLogic.FactoryClass.InheritorsFromFactory
+
+namespace Ex03.ConsoleUI.FactoryClass.InheritorsFromFactory
 {
     public class CarFactory : Factory
     {
         private const float k_FuelTankCapacityInLiters = 45;
-        protected override float NumOfWheels = 5;
-        protected override float WheelMaxPressure = 31;
+        protected override float NumOfWheels => 5;
+        protected override float WheelMaxPressure => 31;
 
         private const eFuelType k_FuelType = eFuelType.Octan95;
         

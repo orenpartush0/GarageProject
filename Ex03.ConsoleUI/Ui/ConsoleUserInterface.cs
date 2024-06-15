@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
-using Ex03.GarageLogic;
-using Ex03.GarageLogic.Classes;
-using Ex03.GarageLogic.FactoryClass.InheritorsFromFactory;
+using Ex03.ConsoleUI.FactoryClass;
 using Ex03.GarageLogic.GarageClass;
 
-namespace Ex03.ConsoleUI
+namespace Ex03.ConsoleUi.UI
 {
     public class ConsoleUserInterface
     {
         private const int k_LicenseMaxSize = 8;//Israeli Standard
-        private const int k_TimeLetUseToSeePrintsBeforeClear = 1000;
-
         private readonly GarageManager r_GarageManager = new GarageManager();
         private bool m_OnGoing = true;
 
-        private void checkLicense(string i_LicenseNumber)
+        private void checkLicense(string i_LicenseNumber, bool i_CalledByAddVehicle = false)
         {
             if (i_LicenseNumber.Length != k_LicenseMaxSize || !i_LicenseNumber.All(char.IsDigit))
             {
                 throw new ArgumentException("invalid license number");
+            }
+
+            if(!i_CalledByAddVehicle) {
+                r_GarageManager.CheckIfVehicleIsServiced(i_LicenseNumber);
             }
         }
 
@@ -98,8 +97,7 @@ namespace Ex03.ConsoleUI
                 Console.Write(".");
                 System.Threading.Thread.Sleep((int)eSec.Sec);
             }
-
-            Console.WriteLine("Done!");
+            Console.WriteLine("\nDone!");
             System.Threading.Thread.Sleep((int)eSec.Sec);
             Console.Clear();
         }
@@ -199,10 +197,10 @@ namespace Ex03.ConsoleUI
             Console.ReadLine();
         }
 
-        private void printList(List<string> lst)
+        private void printList(List<string> i_Lst)
         {
             Console.WriteLine($"List of license number filtered by your request:");
-            foreach (string valueToPrint in lst)
+            foreach (string valueToPrint in i_Lst)
             {
                 Console.WriteLine(valueToPrint);
             }
@@ -212,7 +210,7 @@ namespace Ex03.ConsoleUI
         {
             Console.WriteLine("Please enter the license number of the vehicle (8 digits)");
             string licenseNumber = Console.ReadLine();
-            checkLicense(licenseNumber);
+            checkLicense(licenseNumber, true);
             Console.Clear();
             if (!r_GarageManager.IsInGarage(licenseNumber))
             {

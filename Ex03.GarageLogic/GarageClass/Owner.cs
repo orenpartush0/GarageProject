@@ -1,4 +1,4 @@
-﻿namespace Garage
+﻿namespace Ex03.GarageLogic.GarageClass
 {
     public readonly struct Owner
     {
@@ -12,8 +12,8 @@
         }
 
         public override string ToString() => string.Format(
-            @"Owner name: {0}
-Owner phone: {1}",
+            "Owner name: {0},\n"+
+            "Owner phone: {1}",
             Name,
             PhoneNumber);
     }

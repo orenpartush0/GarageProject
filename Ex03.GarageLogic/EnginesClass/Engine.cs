@@ -1,7 +1,7 @@
 ﻿using System;
-using Ex03.GarageLogic.Engines;
 
-namespace Ex03.GarageLogic.EnginesClasses
+
+namespace Ex03.GarageLogic.EnginesClass
 {
     public abstract class Engine
     {

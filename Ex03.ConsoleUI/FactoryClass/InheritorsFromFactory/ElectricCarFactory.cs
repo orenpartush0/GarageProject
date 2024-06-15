@@ -1,10 +1,6 @@
-﻿using Ex03.GarageLogic;
-using Ex03.GarageLogic.Classes;
-using Ex03.GarageLogic.Engines;
-using Ex03.GarageLogic.EnginesClasses;
-using Ex03.GarageLogic.FactoryClass.InheritorsFromFactory;
-using Ex03.GarageLogic.WheelsClass;
-using System.Collections.Generic;
+﻿using Ex03.GarageLogic.Engines;
+using Ex03.GarageLogic.EnginesClass;
+
 
 namespace Ex03.ConsoleUI.FactoryClass.InheritorsFromFactory
 {
