@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic.EnginesClasses
     public abstract class Engine
     {
         public float CurrentEnergyLevelPercentage { set; get; }
-        public float MaxEnergyLevel { set; get; }
+        private float MaxEnergyLevel { set; get; }
 
         protected Engine(float i_MaxEnergyLevel)
         {

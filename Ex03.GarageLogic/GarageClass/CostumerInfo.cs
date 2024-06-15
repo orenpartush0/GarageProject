@@ -7,7 +7,8 @@ namespace Ex03.GarageLogic.GarageClass
 {
     public class CostumerInfo
     {
-        public Owner Owner { get; set; }
+        private string OwnerName { set; get; }
+        private string OwnerPhoneNumber { set; get; }
         public eVehicleStatus VehicleStatus { set; get; }
         public Vehicle Vehicle { set; get; }
 

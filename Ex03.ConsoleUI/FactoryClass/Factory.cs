@@ -15,6 +15,10 @@ namespace Ex03.GarageLogic
     {
         private const int k_PhoneNumberLength = 10;
 
+        protected abstract float WheelMaxPressure { get; }
+
+        protected abstract float NumOfWheels { get; }
+
         public static Factory createFactory(eVehicle i_VehicleType)
         {
             Factory factory = null;
@@ -40,6 +44,7 @@ namespace Ex03.GarageLogic
 
             return factory;
         }
+        
         private string getPhoneNumber()
         {
             Console.WriteLine("Please enter owner phone number (10 digits)");
@@ -108,34 +113,56 @@ namespace Ex03.GarageLogic
             return ownerName;
         }
 
-        internal abstract void setVehicleSpecificConfiguration(Vehicle i_Vehicle);
-
-        internal void setWheelsWithConfiguration(Vehicle i_Vehicle, float i_NumOfWheels, float i_MaxWheelsAirPressure)
+        protected abstract void setVehicleSpecificConfiguration(Vehicle i_Vehicle);
+        
+        private float[] getWheelsPressure(float i_WheelsNumber)
         {
-            i_Vehicle.Wheels = new List<Wheel>((int)i_NumOfWheels);
-            foreach (int _ in Enumerable.Range(0, (int)i_NumOfWheels))
+            Console.WriteLine("Please enter the wheels pressure, separated by a comma or one pressure for all wheels: ");
+            return wheelsPressureToArray((int)i_WheelsNumber);
+        }
+
+        private string[] getManufacturer(float i_WheelsNumber)
+        {
+            Console.WriteLine("Please enter the wheels manufacturer, separated by a comma or one manufacturer for all wheels: ");
+            return wheelsDataToArray((int)i_WheelsNumber);
+        }
+
+        private string[] wheelsDataToArray(int i_ArrayLength)
+        {
+            string input = Console.ReadLine();
+            string[] splitInput = input.Split(',');
+
+            if (splitInput.Length != i_ArrayLength && splitInput.Length != 1)
             {
-                i_Vehicle.Wheels.Add(new Wheel());
-            }
-            Console.WriteLine("What is the name of the manufacturer that produced the tires?");
-            string manufacturerName = Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("How much air pressure would you like to add to the tires?");
-            if (!float.TryParse(Console.ReadLine(), out float airPressure))
-            {
-                throw new FormatException("Invalid input");
+                throw new FormatException($"Input must contain state for {i_ArrayLength} wheels.");
             }
 
-            Console.Clear();
-            foreach (Wheel wheel in i_Vehicle.Wheels)
+            return splitInput.Length == 1 ? Enumerable.Repeat(splitInput[0], i_ArrayLength).ToArray() : splitInput;
+        }
+
+        private float[] wheelsPressureToArray(int i_ArrayLength)
+        {
+
+            string[] pressures = wheelsDataToArray(i_ArrayLength);
+            if (!pressures.All(str => float.TryParse(str, out _)))
             {
-                wheel.MaxAirPressure = i_MaxWheelsAirPressure;
-                wheel.Inflate(airPressure);
-                wheel.ManufacturerName = manufacturerName;
+                throw new FormatException("Input must contain only numeric digits.");
+            }
+            return pressures.Select(float.Parse).ToArray();
+
+        }
+
+        private void setWheels(Vehicle i_Vehicle)
+        {
+            i_Vehicle.Wheels = new List<Wheel>((int)NumOfWheels);
+            string[] manufacturers = getManufacturer(NumOfWheels);
+            float[] airPressures = getWheelsPressure(NumOfWheels);
+            foreach (int i in Enumerable.Range(0, (int)NumOfWheels))
+            {
+                i_Vehicle.Wheels.Add(new Wheel(manufacturers[i], airPressures[i], WheelMaxPressure));
             }
         }
 
-        internal abstract void setWheels(Vehicle i_Vehicle);
-        internal abstract Engine setEngine();
+        protected abstract Engine setEngine();
     }
 }

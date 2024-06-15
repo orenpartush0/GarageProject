@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic.Classes
 {
     public abstract class Vehicle
     {
-        public string LicenseNumber { set; get; }
+        private string LicenseNumber { set; get; }
         public string ModelName { set; get; }
         public List<Wheel> Wheels { set; get; }
         public Engine Engine { set; get; }
