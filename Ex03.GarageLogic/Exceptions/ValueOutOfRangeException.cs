@@ -7,8 +7,8 @@ namespace Ex03.GarageLogic
         public float MaxValue { get; }
         public float MinValue { get; }
 
-        public ValueOutOfRangeException(float i_MinValue, float i_MaxValue)
-            : base($"Value out of allowed range. Allowed range is between {i_MinValue} and {i_MaxValue}.")
+        public ValueOutOfRangeException(float i_MinValue, float i_MaxValue, string i_Msg = null)
+            : base(i_Msg != null ? i_Msg : $"Value out of allowed range. Allowed range is between {i_MinValue} and {i_MaxValue}.")
         {
             MinValue = i_MinValue;
             MaxValue = i_MaxValue;

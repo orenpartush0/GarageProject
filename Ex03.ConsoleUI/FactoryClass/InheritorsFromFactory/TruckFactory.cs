@@ -21,9 +21,9 @@ namespace Ex03.GarageLogic.FactoryClass.InheritorsFromFactory
             return new FuelEngine(k_FuelType, k_FuelTankCapacityInLiters);
         }
 
-        internal override void setWheels(ref Vehicle i_Vehicle)
+        internal override void setWheels(Vehicle i_Vehicle)
         {
-            setWheelsWithConfiguration(ref i_Vehicle, k_NumOfWheels, k_MaxWheelsAirPressure);
+            setWheelsWithConfiguration(i_Vehicle, k_NumOfWheels, k_MaxWheelsAirPressure);
         }
 
         private float getCargoVolume()
@@ -52,7 +52,7 @@ namespace Ex03.GarageLogic.FactoryClass.InheritorsFromFactory
             return answer == "y";
         }
 
-        internal override void setVehicleSpecificConfiguration(ref Vehicle i_Vehicle)
+        internal override void setVehicleSpecificConfiguration(Vehicle i_Vehicle)
         {
             ((Truck)i_Vehicle).CargoVolume = getCargoVolume();
             ((Truck)i_Vehicle).IsCarryingHazardousMaterials = isCarryingHazardousMaterials();

@@ -61,7 +61,7 @@ namespace Ex03.GarageLogic.Classes
                 LicenseNumber,
                 ModelName,
                 Engine.ToString(),
-                string.Join("\n", Wheels.Select(wheel => wheel.ToString()))
+                string.Join("\n", Wheels.Select(i_Wheel => i_Wheel.ToString()))
             );
         }
     }

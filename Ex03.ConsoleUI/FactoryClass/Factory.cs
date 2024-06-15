@@ -94,8 +94,8 @@ namespace Ex03.GarageLogic
             vehicle.Engine.CurrentEnergyLevelPercentage = getCurrentEnergy(i_VehicleType, vehicle);
             string phoneNumber = getPhoneNumber();
             string ownerName = getOwnerName();
-            setWheels(ref vehicle);
-            setVehicleSpecificConfiguration(ref vehicle);
+            setWheels(vehicle);
+            setVehicleSpecificConfiguration(vehicle);
             i_Gm.VehiclesInGarage.Add(i_LicenseNumber, new CostumerInfo(ownerName, phoneNumber, vehicle));
         }
 
@@ -108,9 +108,9 @@ namespace Ex03.GarageLogic
             return ownerName;
         }
 
-        internal abstract void setVehicleSpecificConfiguration(ref Vehicle i_Vehicle);
+        internal abstract void setVehicleSpecificConfiguration(Vehicle i_Vehicle);
 
-        internal void setWheelsWithConfiguration(ref Vehicle i_Vehicle, float i_NumOfWheels, float i_MaxWheelsAirPressure)
+        internal void setWheelsWithConfiguration(Vehicle i_Vehicle, float i_NumOfWheels, float i_MaxWheelsAirPressure)
         {
             i_Vehicle.Wheels = new List<Wheel>((int)i_NumOfWheels);
             foreach (int _ in Enumerable.Range(0, (int)i_NumOfWheels))
@@ -135,7 +135,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        internal abstract void setWheels(ref Vehicle i_Vehicle);
+        internal abstract void setWheels(Vehicle i_Vehicle);
         internal abstract Engine setEngine();
     }
 }
