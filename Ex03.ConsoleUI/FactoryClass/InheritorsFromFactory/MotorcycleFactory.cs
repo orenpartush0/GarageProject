@@ -10,7 +10,7 @@ namespace Ex03.ConsoleUI.FactoryClass.InheritorsFromFactory
 {
     public class MotorcycleFactory : Factory
     {
-        private const float k_FuelTankCapacityInLiters = 5.5f;
+        protected override float MaxEnergy => 5.5f;
         protected override float NumOfWheels => 2;
         protected override float WheelMaxPressure => 33;
 
@@ -18,7 +18,7 @@ namespace Ex03.ConsoleUI.FactoryClass.InheritorsFromFactory
         
         protected override Engine setEngine()
         {
-            return new FuelEngine(k_FuelType, k_FuelTankCapacityInLiters);
+            return new FuelEngine(k_FuelType, MaxEnergy);
         }
 
         protected override void setVehicleSpecificConfiguration(Vehicle i_Vehicle)

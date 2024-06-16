@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic.Classes
         public List<Wheel> Wheels { set; get; }
         public Engine Engine { set; get; }
 
-        public Vehicle(string i_LicenseNumber, Engine i_Engine)
+        protected Vehicle(string i_LicenseNumber, Engine i_Engine)
         {
             LicenseNumber = i_LicenseNumber;
             Engine = i_Engine;
@@ -56,7 +56,7 @@ namespace Ex03.GarageLogic.Classes
             return string.Format(
                 "License Number: {0}\n" +
                 "Model Name: {1}\n" +
-                "Engine: {2}\n" +
+                "Engine:\n{2}\n" +
                 "Wheels:\n{3}",
                 LicenseNumber,
                 ModelName,

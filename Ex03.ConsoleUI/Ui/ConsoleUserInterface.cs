@@ -12,6 +12,12 @@ namespace Ex03.ConsoleUi.UI
         private readonly GarageManager r_GarageManager = new GarageManager();
         private bool m_OnGoing = true;
 
+        enum eSec
+        {
+            Sec = 1000,
+            TwoSec = 2000,
+        }
+
         private void checkLicense(string i_LicenseNumber, bool i_CalledByAddVehicle = false)
         {
             if (i_LicenseNumber.Length != k_LicenseMaxSize || !i_LicenseNumber.All(char.IsDigit))

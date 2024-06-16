@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Ui\ConsoleUserInterface.cs" />
     <Compile Include="Enum\eGarageMenuOption.cs" />
-    <Compile Include="Enum\eSec.cs" />
     <Compile Include="FactoryClass\Factory.cs" />
     <Compile Include="FactoryClass\InheritorsFromFactory\CarFactory.cs" />
     <Compile Include="FactoryClass\InheritorsFromFactory\ElectricCarFactory.cs" />

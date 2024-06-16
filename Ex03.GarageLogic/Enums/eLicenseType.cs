@@ -1,5 +1,4 @@
-﻿
-public enum eLicenseType
+﻿public enum eLicenseType
 {
     A = 1,
     A1,

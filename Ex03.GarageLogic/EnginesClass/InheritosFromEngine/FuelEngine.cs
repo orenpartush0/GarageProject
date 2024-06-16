@@ -5,20 +5,15 @@ namespace Ex03.GarageLogic.Engines
 {
     public sealed class FuelEngine : Engine
     {
+        protected override eEngine Type => eEngine.FuelEngine;
+
         public FuelEngine(eFuelType i_FuelType, float i_MaxEnergyLevel)
             : base(i_MaxEnergyLevel)
         {
             FuelType = i_FuelType;
         }
 
-        private const eEngine k_Type = eEngine.FuelEngine;
-
         public eFuelType FuelType { set; get; }
-
-        public override string GetType()
-        {
-            return k_Type.ToString();
-        }
 
         public override string PowerSource()
         {

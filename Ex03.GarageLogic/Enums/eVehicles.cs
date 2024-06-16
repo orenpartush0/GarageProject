@@ -1,5 +1,4 @@
-﻿
-public enum eVehicle
+﻿public enum eVehicle
 {
     Car = 1,
     ElectricCar,

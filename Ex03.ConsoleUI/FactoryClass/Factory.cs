@@ -16,6 +16,8 @@ namespace Ex03.ConsoleUI.FactoryClass
     {
         private const int k_PhoneNumberLength = 10;
 
+        protected abstract float MaxEnergy { get; }
+
         protected abstract float WheelMaxPressure { get; }
 
         protected abstract float NumOfWheels { get; }
@@ -56,7 +58,7 @@ namespace Ex03.ConsoleUI.FactoryClass
             {
                 throw new FormatException("Invalid input");
             }
-            else if (strPhoneNumber.Length != k_PhoneNumberLength)
+            else if (strPhoneNumber.Length != k_PhoneNumberLength || intPhoneNumber < 0)
             {
                 throw new ArgumentException("Invalid input");
             }
@@ -84,10 +86,8 @@ namespace Ex03.ConsoleUI.FactoryClass
             {
                 throw new FormatException("Invalid input");
             }
-            else if (floatCurrentEnergy > 100)
-            {
-                throw new ValueOutOfRangeException(0, 100);
-            }
+
+            ValueOutOfRangeException.CheckValue(floatCurrentEnergy, 0, 100);
 
             return floatCurrentEnergy;
         }
@@ -102,7 +102,7 @@ namespace Ex03.ConsoleUI.FactoryClass
             string ownerName = getOwnerName();
             setWheels(vehicle);
             setVehicleSpecificConfiguration(vehicle);
-            i_Gm.VehiclesInGarage.Add(i_LicenseNumber, new CostumerInfo(ownerName, phoneNumber, vehicle));
+            i_Gm.AddVehicleToGarage(new CostumerInfo(ownerName, phoneNumber, vehicle) , i_LicenseNumber);
         }
 
         private string getOwnerName()
@@ -145,14 +145,13 @@ namespace Ex03.ConsoleUI.FactoryClass
 
         private float[] wheelsPressureToArray(int i_ArrayLength)
         {
-
             string[] pressures = wheelsDataToArray(i_ArrayLength);
             if (!pressures.All(str => float.TryParse(str, out _)))
             {
                 throw new FormatException("Input must contain only numeric digits.");
             }
-            return pressures.Select(float.Parse).ToArray();
 
+            return pressures.Select(float.Parse).ToArray();
         }
 
         private void setWheels(Vehicle i_Vehicle)

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ex03.GarageLogic.VehicleClasses;
 using Ex03.GarageLogic.WheelsClass;
 
 namespace Ex03.GarageLogic.GarageClass
 {
     public class GarageManager
     {
-        public Dictionary<string, CostumerInfo> VehiclesInGarage { set; get; }
+        public Dictionary<string, CostumerInfo> VehiclesInGarage { set; get; } = new Dictionary<string, CostumerInfo>();
 
-        public GarageManager()
+        public void AddVehicleToGarage(CostumerInfo i_Costumer , string i_LicenseNumber)
         {
-            VehiclesInGarage = new Dictionary<string, CostumerInfo>();
+            VehiclesInGarage.Add(i_LicenseNumber, i_Costumer);
         }
 
         public bool IsInGarage(string i_LicenseNumber)
@@ -23,39 +22,32 @@ namespace Ex03.GarageLogic.GarageClass
         public List<string> GetVehicleLicenseNumberListWithFiltering(eVehicleStatus? i_Filter = null)
         {
             return VehiclesInGarage
-                .Where(vehicle => i_Filter == null || vehicle.Value.VehicleStatus == i_Filter)
-                .Select(vehicle => vehicle.Key)
+                .Where(i_Vehicle => i_Filter == null || i_Vehicle.Value.VehicleStatus == i_Filter)
+                .Select(i_Vehicle => i_Vehicle.Key)
                 .ToList();
         }
 
         public Tuple<eVehicleStatus, eVehicleStatus> ChangeVehicleStatus(string i_LicenseNumber, eVehicleStatus i_NewStatus)
         {
-            if (!this.IsInGarage(i_LicenseNumber))
-            {
-                throw new ArgumentException("This vehicle has not been serviced in the garage.");
-            }
-
+            CheckIfVehicleIsServiced(i_LicenseNumber);
             eVehicleStatus before = VehiclesInGarage[i_LicenseNumber].VehicleStatus;
-            Tuple<eVehicleStatus, eVehicleStatus> BeforeAndAfterStatus = new Tuple<eVehicleStatus, eVehicleStatus>(before, i_NewStatus);
+            Tuple<eVehicleStatus, eVehicleStatus> beforeAndAfterStatus = new Tuple<eVehicleStatus, eVehicleStatus>(before, i_NewStatus);
             VehiclesInGarage[i_LicenseNumber].VehicleStatus = i_NewStatus;
 
-            return BeforeAndAfterStatus;
+            return beforeAndAfterStatus;
         }
 
         public float? FillTires(string i_LicenseNumber)
         {
-            float? newAirPression = null;
+            float? newAirPressure = null;
 
-            if (!this.IsInGarage(i_LicenseNumber))
-            {
-                throw new ArgumentException("This vehicle has not been serviced in the garage.");
-            }
+            CheckIfVehicleIsServiced(i_LicenseNumber);
             foreach (Wheel wheel in VehiclesInGarage[i_LicenseNumber].Vehicle.Wheels)
             {
-              newAirPression = wheel.InflateToMax();
+                newAirPressure = wheel.InflateToMax();
             }
 
-            return newAirPression;
+            return newAirPressure;
         }
 
         public void CheckIfVehicleIsServiced(string i_LicenseNumber)
@@ -68,6 +60,7 @@ namespace Ex03.GarageLogic.GarageClass
 
         public Tuple<float, float> RefuelVehicle(string i_LicenseNumber, float i_FuelToFill, eFuelType? i_FuelType)
         {
+            CheckIfVehicleIsServiced(i_LicenseNumber);
             if (VehiclesInGarage[i_LicenseNumber].Vehicle.Engine.GetType() == "Battery" && i_FuelType != null )
             {
                 throw new ArgumentException("This vehicle is actually an electric vehicle.");

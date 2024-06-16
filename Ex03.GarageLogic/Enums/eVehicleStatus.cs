@@ -1,5 +1,4 @@
-﻿
-public enum eVehicleStatus
+﻿public enum eVehicleStatus
 {
     Repair = 1,
     Fixed,

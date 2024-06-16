@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Ex03.GarageLogic.WheelsClass
 {
     public sealed class Wheel
@@ -10,8 +9,8 @@ namespace Ex03.GarageLogic.WheelsClass
 
         public Wheel(string i_ManufacturerName, float i_CurrentAirPressure, float i_MaxAirPressure) { 
             ManufacturerName = i_ManufacturerName;
-            CurrentAirPressure = i_CurrentAirPressure;
             MaxAirPressure = i_MaxAirPressure;
+            Inflate(i_CurrentAirPressure);
         }
 
         public void Inflate(float i_ToInflate)
