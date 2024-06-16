@@ -146,7 +146,7 @@ namespace Ex03.ConsoleUI.FactoryClass
         private float[] wheelsPressureToArray(int i_ArrayLength)
         {
             string[] pressures = wheelsDataToArray(i_ArrayLength);
-            if (!pressures.All(str => float.TryParse(str, out _)))
+            if (!pressures.All(i_Str => float.TryParse(i_Str, out _)))
             {
                 throw new FormatException("Input must contain only numeric digits.");
             }
