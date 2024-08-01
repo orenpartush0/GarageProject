@@ -11,13 +11,12 @@ Architecture
 
 The project is structured into two main layers:
 
-Business Logic Layer (BLL):
-
+Logic layer:
 Handles all the core logic and operations of the application.
 Contains classes and methods for managing vehicles, customers, and services.
 Implements the Factory Design Pattern to create instances of different vehicle types.
-User Interface (UI) Layer:
 
+User Interface (UI) Layer:
 Provides a graphical interface for users to interact with the system.
 Communicates with the Business Logic Layer to perform operations and display data.
 Technologies
