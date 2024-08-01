@@ -11,7 +11,7 @@ Architecture
 
 The project is structured into two main layers:
 
-Logic layer:
+Logic layer:/n
 Handles all the core logic and operations of the application.
 Contains classes and methods for managing vehicles, customers, and services.
 Implements the Factory Design Pattern to create instances of different vehicle types.
